@@ -1,0 +1,48 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+@import "../shared/CustomButton/CustomButton.module.scss";
+
+.table {
+	@include flex($direction: column);
+	border-spacing: 7px;
+
+	& thead {
+		& td {
+			border: none;
+			background: none;
+		}
+	}
+
+	.cell {
+		&_yellow {
+			background: yellow;
+		}
+
+		&_green {
+			background: $main-color;
+			border: none;
+			color: $second-main-color;
+		}
+	}
+}
+
+.button {
+	&_green {
+		@extend .button;
+		background: $main-color;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+		&:hover {
+			border: 1px solid $main-color;
+		}
+	}
+
+	&_cross {
+		border: none;
+		cursor: pointer;
+		color: $main-color;
+		margin: 0;
+		padding: 0;
+		background-color: $second-main-color;
+	}
+}

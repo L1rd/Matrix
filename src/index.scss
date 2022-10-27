@@ -1,0 +1,10 @@
+@font-face {
+	font-family: "Open Sans";
+	font-style: normal;
+	font-weight: 400, 600;
+	font-stretch: 100%;
+	font-display: swap;
+	src: url("../public/styles/fonts/OpenSans-Regular.ttf"), url("../public/styles/fonts/OpenSans-SemiBold.ttf");
+}
+
+@import "./assets/styles/main.scss";
