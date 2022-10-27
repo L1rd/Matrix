@@ -1,0 +1,19 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/mixins";
+
+.title {
+	font-weight: bold;
+	font-size: 40px;
+	color: yellow;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.content {
+	background: $main-color;
+	padding: 30px 50px;
+	color: $second-main-color;
+	border: 2px solid $main-color;
+	margin: 0 auto 30px auto;
+	max-width: 450px;
+}
