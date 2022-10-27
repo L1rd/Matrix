@@ -1,0 +1,16 @@
+@import "../../../assets/styles/variables";
+
+.input {
+	border: 1px solid $main-color;
+	background-color: $second-main-color;
+	color: $main-color;
+	height: 25px;
+	width: 60px;
+	border-radius: 5px;
+	transition: 0.5s;
+	text-align: center;
+	
+	&:focus {
+		outline: none;
+	}
+}
