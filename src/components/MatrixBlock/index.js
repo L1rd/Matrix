@@ -1,19 +1,23 @@
-import { useState } from "react";
 import { CustomButton } from "../shared/CustomButton";
 import { TableRow } from "../Matrix/TableRow";
 import { MatrixAverage } from "../Matrix/AvarageRow";
-import { createMatrixRow } from "../../utils/helpers/create-matrix-row";
 import { TableHead } from "../Matrix/TableHead";
 import styles from "./MatrixBlock.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { addMatrixRow } from "../../matrix-services/actions";
+import { getMatrixColumnsSelector, getMatrixDataSelector} from "../../matrix-services/selectors";
 
-export const Matrix = ({ data, settings, onSetData }) => {
-  const [closestCellIds, setСlosestCellIds] = useState([]);
+export const Matrix = () => {
+  const dispatch = useDispatch();
 
-  const handleAddRow = () =>
-    onSetData([...data, createMatrixRow(settings.columns)]);
+  const matrix = useSelector(getMatrixDataSelector);
+
+  const columns = useSelector(getMatrixColumnsSelector);
+
+  const handleAddRow = () => dispatch(addMatrixRow(columns));
 
   return (
-    !!data.length && (
+    !!matrix.length && (
       <div className="app__matrix-block">
         <CustomButton
           label="Add row"
@@ -21,24 +25,17 @@ export const Matrix = ({ data, settings, onSetData }) => {
           onClick={handleAddRow}
         />
         <table className={styles.table}>
-          
-            <TableHead columnsCount={settings.columns} />
-          
+          <TableHead />
           <tbody>
-            {data.map((item, index) => (
+            {matrix.map((item, index) => (
               <TableRow
                 key={`${item}+${index}`}
-                closestCellIds={closestCellIds}
-                onSetClosestCellIds={setСlosestCellIds}
                 row={item}
-                closestCellsCount={settings.cells}
-                matrix={data}
                 index={index}
                 styles={styles}
-                onSetData={onSetData}
               />
             ))}
-            <MatrixAverage data={data} styles={styles.cell_green} />
+            <MatrixAverage styles={styles.cell_green} />
           </tbody>
         </table>
       </div>
