@@ -1,0 +1,7 @@
+@import "../../assets/styles/mixins";
+
+.wrapper {
+		@include flex($justify: space-between);
+		margin-bottom: 25px;
+	}
+
