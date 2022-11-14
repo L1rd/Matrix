@@ -1,19 +1,17 @@
-import { createMatrixRow } from "../../utils/helpers/create-matrix-row";
+import { useDispatch } from "react-redux";
+import { createMatrix, setMatrixSettings } from "../../matrix-services/actions";
 import { SettingsItem } from "../SettingsItem";
 import { CustomButton } from "../shared/CustomButton";
 import styles from "./MatrixForm.module.scss";
 
-export const MatrixForm = ({ onSetData, settings, onSetSettings }) => {
-  const handleCreateMatrix = () => {
-    const matrix = Array(settings.rows)
-      .fill()
-      .map(() => createMatrixRow(settings.columns));
-      onSetData(matrix);
-  };
+export const MatrixForm = () => {
+  const dispatch = useDispatch();
+
+  const handleCreateMatrix = () => dispatch(createMatrix());
 
   const handleSetSettings = (event) => {
     const { value, name } = event.target;
-    onSetSettings({ ...settings, [name]: +value <= 0 ? 0 : +value });
+    dispatch(setMatrixSettings({ value, name }));
   };
 
   return (

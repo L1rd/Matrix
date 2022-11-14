@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { getMatrixColumnsSelector} from "../../../matrix-services/selectors";
 import { TableCell } from "../TableCell";
 
 const getHeadings = (columns) =>
@@ -5,8 +7,10 @@ const getHeadings = (columns) =>
     .fill(0)
     .map((_, index) => index + 1);
 
-export const TableHead = ({ columnsCount }) => {
-  const headings = getHeadings(columnsCount);
+export const TableHead = () => {
+  const columns = useSelector(getMatrixColumnsSelector);
+
+  const headings = getHeadings(columns);
 
   return (
     <thead>

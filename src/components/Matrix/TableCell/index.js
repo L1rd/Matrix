@@ -7,28 +7,22 @@ export const TableCell = ({
   data,
   style,
   onClick,
-  findClosestIds,
   className,
   onMouseEnter,
   onMouseLeave,
-  onSetClosestCellIds,
 }) => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHoverCell, setIsHoverCell] = useState(false);
 
-  const handleEnter = () => {
-    if (findClosestIds) {
-      setIsHover(true);
-      findClosestIds();
-    } else if (onMouseEnter) {
+  const handleMouseEnter = () => {
+    setIsHoverCell(true);
+    if (onMouseEnter) {
       onMouseEnter();
     }
   };
 
-  const handleLeave = () => {
-    if (onSetClosestCellIds) {
-      setIsHover(false);
-      onSetClosestCellIds([]);
-    } else if (onMouseLeave) {
+  const handleMouseLeave = () => {
+    setIsHoverCell(false);
+    if (onMouseLeave) {
       onMouseLeave();
     }
   };
@@ -36,10 +30,10 @@ export const TableCell = ({
   return (
     <td
       className={classnames(styles.cell, className, {
-        [styles.cell_red]: isHover,
+        [styles.cell_red]: isHoverCell,
       })}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       onClick={onClick}
       style={style}
     >
